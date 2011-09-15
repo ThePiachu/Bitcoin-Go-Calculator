@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>TP's Bitcoin Calculator</title>
+	<meta name="author" content="TP">
+<meta name="keywords" content=" go, golang, Google go, go programming language, network programming, distributed computing, Bitcoin, calculator, mining, free, net, profit, power, cost, rig, miner, pool"/>
+
+ 	<script type="text/javascript">
+/* <![CDATA[ */
+    (function() {
+        var s = document.createElement("script"), t = document.getElementsByTagName("script")[0];
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "http://api.flattr.com/js/0.6/load.js?mode=auto";
+        t.parentNode.insertBefore(s, t);
+    })();
+/* ]]> */
+</script>
+
+</head>
+<body>
+	<div>
+		<script type="text/javascript"><!--
+		google_ad_client = "ca-pub-5720320439509055";
+		/* Bitcoin Calculator skyscreaper */
+		google_ad_slot = "0541082606";
+		google_ad_width = 160;
+		google_ad_height = 600;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	</div>
+
+	<div style="position: absolute; left: 200px; top: 0px; width: 600px;">
+	<h2>TP's Bitcoin Calculator</h2>
+	<p>Difficulty and exchange rate updated about once an hour</p>
+	
+	<form method="POST" action="/recalculate"> 
+	
+	
+	<table width="600" cellspacing="2" border="1">
+	<tr>
+	<td>
+	
+	<table> 
+	  	<tr><td>Difficulty</td><td><input type='text' name='difficulty' width='24' value="{{.section DifficultyStr}}{{@}}{{.end}}" /></td></tr> 
+	  	<tr><td>Hash Rate</td><td><input type="text" name="hashrate" value="{{.section HashRateStr}}{{@}}{{.end}}" width="32" /></td><td>MHash/s</td></tr> 
+	  	<tr><td>Exchange Rate</td><td><input type="text" name="exchangerate" value="{{.section ExchangeRateStr}}{{@}}{{.end}}" /></td><td>$/฿</td></tr>
+		<tr><td>Bitcoins per block</td><td><input type="text" name="bitcoinsperblock" value="{{.section BitcoinsPerBlockStr}}{{@}}{{.end}}" /></td><td>฿</td></tr>
+	</table> 
+	
+	
+	</td>
+	<td>
+	
+	<table>
+	<tr><td>Rig Cost</td>			<td><input type='text' name='rigcost' width='24' value="{{.section RigCostStr}}{{@}}{{.end}}" /></td><td>$</td></tr>
+	<tr><td>Power Consumption</td>	<td><input type='text' name='powerconsumption' width='24' value="{{.section PowerConsumptionStr}}{{@}}{{.end}}" /></td><td>W</td></tr>
+	<tr><td>Price of power</td>		<td><input type='text' name='powercost' width='24' value="{{.section PowerCostStr}}{{@}}{{.end}}" /></td><td>$/kWh</td></tr>
+	</table>
+	
+	</td>
+	</tr>
+	</table>
+	
+	<BR>
+	
+	<p style="position: absolute; left: 100px; top: 250px;"><input type="submit" id="calcbutton" value="Calculate" /></p>
+	
+	</form>
+	
+	<form method="POST" action="/"> 
+	<p style="position: absolute; left: 110px; top: 280px;"><input type="submit" id="resetbutton" value="Reset" /></p>
+	</form>
+
+	<div style="position: absolute; left: 420px; top: 260px;">
+	<a class="FlattrButton" style="display:none;" href="http://tpbitcalc.appspot.com/"></a>
+<noscript><a href="http://flattr.com/thing/396134/Bitcoin-Calculator" target="_blank">
+<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
+	</div>
+	
+	{{.section DisplayResults}}	
+	<BR>
+	<BR>
+	<h2>Results:</h2>
+
+	
+	<table width="600" cellspacing="2" border="1">
+	<tr>
+	<td><div align="left"><b>The containing table</b></div>
+	
+	<table> 
+	
+	  <tr><th>Earnings</th><th>฿</th><th>$</th></tr>
+	  <tr><td>Hourly</td><td>{{.section HourlyRewardBC}}{{@}}{{.end}}</td><td>{{.section HourlyRewardD}}{{@}}{{.end}}</td></tr>
+	  <tr><td>Daily</td><td>{{.section DailyRewardBC}}{{@}}{{.end}}</td><td>{{.section DailyRewardD}}{{@}}{{.end}}</td></tr>
+	  <tr><td>Weekly</td><td>{{.section WeeklyRewardBC}}{{@}}{{.end}}</td><td>{{.section WeeklyRewardD}}{{@}}{{.end}}</td></tr>
+	  <tr><td>Monthly</td><td>{{.section MonthlyRewardBC}}{{@}}{{.end}}</td><td>{{.section MonthlyRewardD}}{{@}}{{.end}}</td></tr>
+	  <tr><td>Annual</td><td>{{.section AnnualRewardBC}}{{@}}{{.end}}</td><td>{{.section AnnualRewardD}}{{@}}{{.end}}</td></tr>
+	
+	</table>
+	
+	</td>
+	<td>
+	
+	
+	<table>
+	  <tr><th></th><th></th></tr>
+	  <tr><td>Mining cost</td><td>{{.section MiningCost}}{{@}}{{.end}}</td><td>$/h</td></tr>
+	  <tr><td>Net hourly profit</td><td>{{.section HourlyNetProfit}}{{@}}{{.end}}</td><td>$/h</td></tr>
+	  <tr><td>Net daily profit</td><td>{{.section DailyNetProfit}}{{@}}{{.end}}</td><td>$/day</td></tr>
+	  <tr><td>Net weekly profit</td><td>{{.section WeeklyNetProfit}}{{@}}{{.end}}</td><td>$/week</td></tr>
+	  <tr><td>Net monthly profit</td><td>{{.section MonthlyNetProfit}}{{@}}{{.end}}</td><td>$/month</td></tr>
+	  <tr><td>Net Annual profit</td><td>{{.section AnnualNetProfit}}{{@}}{{.end}}</td><td>$/year</td></tr>
+	  <tr><td>Break even after</td><td>{{.section BreakEvenTime}}{{@}}{{.end}}</td><td>days</td></tr>
+	</table>
+	
+	
+	</td>
+	</tr>
+	</table>
+	<BR>
+	<table>
+	<tr><td>Time to generate one block</td><td>{{.section TimeToGenerateABlock}}{{@}}{{.end}}</td><td>days</td></tr>
+	<tr><td>Blocks generated annually</td><td>{{.section BlocksGeneratedPerYear}}{{@}}{{.end}}</td><td>blocks</td></tr>
+	</table>
+	{{.end}}
+
+	<div style="position: relative; top: 70px;">
+	<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="http://tpbitcalc.appspot.com/">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e71f9fb5d9e1831"></script>
+<!-- AddThis Button END -->
+	<p>If you like this calculator, please consider sharing, Flattr'ing or sending some Bitcoins over to:</p>
+	<p>1EdswQSvuSD2gv9GJrD75ssUNMufnAbdo</p>
+	</div>
+	</div>
+	
+	
+</body>
+</html>
