@@ -4,6 +4,12 @@ runtime:     go
 api_version: 2
 
 handlers:
+- url: /icons/(favicon\.ico|icon57\.png|icon72\.png|icon114\.png)
+  static_files: static/icons/\1
+  upload: static/.*
+- url: /(apple-touch-icon-57x57\.png|apple-touch-icon\.png)
+  static_files: static/icons/\1
+  upload: static/.*
 - url: /res
   static_dir: res
 - url: /.*
